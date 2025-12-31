@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+
+  /* Poster Colors */
+  --poster-red: #d32f2f;
+  --poster-blue: #104e74;
+  --poster-yellow: #fbc02d;
+  --poster-teal: #26a69a;
+  --poster-navy: #0d47a1;
+
+  --accent-color: var(--poster-red);
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  --font-main: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.display-font {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.glass {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: var(--poster-red);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
+.accent {
+  color: var(--poster-red);
+}
+
+/* Poster Ribbon Style */
+.ribbon {
+  position: relative;
+  background: var(--poster-blue);
+  color: white;
+  padding: 10px 20px;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 4px 4px 4px 0;
+}
+
+.ribbon:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-top: 10px solid #082d44;
+  border-left: 10px solid transparent;
+}
