@@ -176,7 +176,17 @@ const Fixtures = () => {
         .loading, .no-matches { text-align: center; color: #666; margin-top: 2rem; }
 
         @media (max-width: 768px) {
-          .bracket-container { flex-direction: column; }
+          .fixtures-page { padding: 1rem; }
+          .page-header h1 { font-size: 1.8rem; }
+          .page-header p { font-size: 0.9rem; }
+          .filters { padding: 1rem; margin-bottom: 2rem; }
+          .sport-select { width: 100%; }
+          .bracket-container { flex-direction: column; gap: 2rem; }
+          .round { min-width: 0; width: 100%; }
+          .round-header { margin-bottom: 1.5rem; }
+          .matches { gap: 1.5rem; }
+          .match-card { padding: 1rem; }
+          .team-name { font-size: 0.9rem; }
         }
       `}</style>
     </div>

@@ -126,6 +126,19 @@ const PointsTable = () => {
           font-size: 1.25rem;
           color: var(--accent-color);
         }
+        @media (max-width: 768px) {
+          .points-page { padding: 1rem; }
+          .page-header h1 { font-size: 2rem; }
+          .table-container { padding: 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .points-table th, .points-table td { padding: 1rem 0.75rem; font-size: 0.85rem; }
+          .rank-number { width: 32px; height: 32px; font-size: 0.8rem; }
+          .medal { width: 24px; height: 24px; font-size: 0.75rem; }
+          .total-points { font-size: 1rem; }
+        }
+        @media (max-width: 480px) {
+          .page-header h1 { font-size: 1.6rem; }
+          .points-table th, .points-table td { padding: 0.75rem 0.5rem; }
+        }
       `}</style>
     </div>
   );

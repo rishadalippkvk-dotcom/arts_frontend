@@ -132,9 +132,18 @@ const Home = () => {
         }
 
         @media (max-width: 768px) {
-            .main-title { font-size: 3rem; }
-            .college-footer { flex-direction: column; gap: 2rem; text-align: center; }
+            .hero { padding: 4rem 1rem; }
+            .sub-header { font-size: 1rem; }
+            .main-title { font-size: 2.5rem; margin-bottom: 2rem; }
+            .cta-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+            .btn-primary, .btn-outline { width: 100%; }
+            .college-footer { flex-direction: column; gap: 2rem; text-align: center; padding: 2rem 1rem; }
+            .logos { flex-direction: column; gap: 1rem; }
+            .divider { display: none; }
             .contact { text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .main-title { font-size: 2rem; }
         }
       `}</style>
     </div>

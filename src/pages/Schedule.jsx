@@ -185,17 +185,28 @@ const Schedule = () => {
         .final-banner h1 { font-size: 5rem; text-transform: uppercase; color: var(--poster-blue); font-weight: 900; }
 
         @media (max-width: 850px) {
-            .v-line { left: 30px; transform: none; }
-            .marker { left: 30px; transform: translateX(-50%); }
+            .schedule-container { padding: 2rem 1rem; }
+            .schedule-header { margin-bottom: 3rem; }
+            .title-red { font-size: 2.2rem; }
+            .v-line { left: 20px; transform: none; }
+            .marker { left: 20px; transform: translateX(-50%); }
             .timeline-node.left, .timeline-node.right {
                 justify-content: flex-start;
-                padding-left: 60px;
+                padding-left: 50px;
                 padding-right: 0;
+                margin-bottom: 3rem;
             }
             .schedule-card-wrapper { padding: 0; justify-content: flex-start !important; }
-            .schedule-card { width: 100%; max-width: 500px; }
-            .final-banner h1 { font-size: 3rem; }
-            .title-red { font-size: 2.5rem; }
+            .schedule-card { width: 100%; max-width: none; }
+            .card-sport { font-size: 1.4rem; }
+            .card-content { padding: 1.5rem 1rem; }
+            .final-banner { margin-top: 3rem; padding: 2rem 1rem; }
+            .final-banner h2 { font-size: 1.8rem; }
+            .final-banner h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 480px) {
+            .title-red { font-size: 1.8rem; }
+            .final-banner h1 { font-size: 2rem; }
         }
       `}</style>
     </div>

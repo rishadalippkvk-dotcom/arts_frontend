@@ -122,11 +122,11 @@ const Admin = () => {
                 <tbody>
                   {programs.map(prog => (
                     <tr key={prog._id}>
-                      <td><span className="ribbon-mini">{prog.day}</span></td>
-                      <td className="date-cell">{prog.date}</td>
-                      <td className="sport-cell">{prog.sport}</td>
-                      <td>{prog.venue}</td>
-                      <td>
+                      <td data-label="Day"><span className="ribbon-mini">{prog.day}</span></td>
+                      <td data-label="Date" className="date-cell">{prog.date}</td>
+                      <td data-label="Sport" className="sport-cell">{prog.sport}</td>
+                      <td data-label="Venue">{prog.venue}</td>
+                      <td data-label="Actions">
                         <div className="actions">
                           <button className="icon-btn edit" onClick={() => handleEdit(prog)}><Edit2 size={16} /></button>
                           <button className="icon-btn delete" onClick={() => handleDelete(prog._id)}><Trash2 size={16} /></button>
@@ -157,11 +157,11 @@ const Admin = () => {
                 <tbody>
                   {fixtures.map(fix => (
                     <tr key={fix._id}>
-                      <td className="navy-cell">{fix.sport}</td>
-                      <td>{fix.round}</td>
-                      <td>{fix.teamA} VS {fix.teamB}</td>
-                      <td className="red-cell">{fix.scoreA} - {fix.scoreB}</td>
-                      <td>
+                      <td data-label="Sport" className="navy-cell">{fix.sport}</td>
+                      <td data-label="Round">{fix.round}</td>
+                      <td data-label="Match Up">{fix.teamA} VS {fix.teamB}</td>
+                      <td data-label="Score" className="red-cell">{fix.scoreA} - {fix.scoreB}</td>
+                      <td data-label="Actions">
                         <div className="actions">
                           <button className="icon-btn edit" onClick={() => handleEdit(fix)}><Edit2 size={16} /></button>
                           <button className="icon-btn delete" onClick={() => handleDelete(fix._id)}><Trash2 size={16} /></button>
@@ -193,12 +193,12 @@ const Admin = () => {
                 <tbody>
                   {points.map(pt => (
                     <tr key={pt._id}>
-                      <td className="sport-cell">{pt.department}</td>
-                      <td><div className="ribbon-mini" style={{ background: '#FFD700', color: '#000' }}>{pt.gold}</div></td>
-                      <td><div className="ribbon-mini" style={{ background: '#C0C0C0', color: '#000' }}>{pt.silver}</div></td>
-                      <td><div className="ribbon-mini" style={{ background: '#CD7F32', color: '#000' }}>{pt.bronze}</div></td>
-                      <td className="red-cell">{pt.total}</td>
-                      <td>
+                      <td data-label="Dept" className="sport-cell">{pt.department}</td>
+                      <td data-label="Gold"><div className="ribbon-mini" style={{ background: '#FFD700', color: '#000' }}>{pt.gold}</div></td>
+                      <td data-label="Silver"><div className="ribbon-mini" style={{ background: '#C0C0C0', color: '#000' }}>{pt.silver}</div></td>
+                      <td data-label="Bronze"><div className="ribbon-mini" style={{ background: '#CD7F32', color: '#000' }}>{pt.bronze}</div></td>
+                      <td data-label="Total" className="red-cell">{pt.total}</td>
+                      <td data-label="Actions">
                         <div className="actions">
                           <button className="icon-btn edit" onClick={() => handleEdit(pt)}><Edit2 size={16} /></button>
                           <button className="icon-btn delete" onClick={() => handleDelete(pt._id)}><Trash2 size={16} /></button>
@@ -325,7 +325,9 @@ const Admin = () => {
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 2rem;
+            border-radius: 12px;
             margin-bottom: 2rem;
+            background: #fff;
         }
         .admin-nav {
             display: flex;
@@ -339,6 +341,7 @@ const Admin = () => {
             cursor: pointer;
             color: #666;
             border-bottom: 3px solid transparent;
+            transition: var(--transition);
         }
         .tab.active {
             color: var(--poster-red);
@@ -346,11 +349,10 @@ const Admin = () => {
         }
         .navy-cell { color: var(--poster-blue); font-weight: 700; }
         .red-cell { color: var(--poster-red); font-weight: 800; }
-        
         .navy { color: var(--poster-blue); }
         .red { color: var(--poster-red); }
         
-        .program-management {
+        .program-management, .fixture-management, .points-management {
             padding: 2rem;
             background: #fff;
         }
@@ -405,8 +407,10 @@ const Admin = () => {
         }
         .modal {
             width: 600px;
-            padding: 3rem;
+            max-width: 95%;
+            padding: 2.5rem;
             background: #fff;
+            border-radius: 12px;
         }
         .form-grid {
             display: grid;
@@ -420,23 +424,57 @@ const Admin = () => {
             font-weight: 600;
             font-size: 0.9rem;
         }
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
+            background: #f9f9f9;
         }
         .modal-actions {
             display: flex;
             gap: 1rem;
             justify-content: flex-end;
+            margin-top: 2rem;
         }
         .btn-outline {
             background: transparent;
             border: 1px solid #ddd;
             padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .page-header { flex-direction: column; gap: 1.5rem; text-align: center; padding: 1.5rem 1rem; }
+            .admin-nav { width: 100%; overflow-x: auto; padding-bottom: 5px; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+            .tab { white-space: nowrap; flex: 0 0 auto; }
+            .btn-primary { width: 100%; justify-content: center; }
+            
+            .admin-content { padding: 0; }
+            .program-management, .fixture-management, .points-management { padding: 1.5rem 1rem; border-radius: 0; }
+            
+            .admin-table th, .admin-table td { padding: 1rem 0.5rem; font-size: 0.85rem; }
+            .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            
+            .modal { padding: 2rem 1.5rem; max-height: 90vh; overflow-y: auto; }
+            .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .modal-actions { flex-direction: column; }
+            .modal-actions button { width: 100%; order: 1; }
+            .modal-actions button:first-child { order: 2; }
+        }
+
+        @media (max-width: 600px) {
+            .admin-table th { display: none; }
+            .admin-table tr { display: block; padding: 1.5rem 0; border-bottom: 2px solid #eee; position: relative; }
+            .admin-table td { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border: none; text-align: right; }
+            .admin-table td:before { content: attr(data-label); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; color: #999; text-align: left; margin-right: 1rem; }
+            .actions { width: 100%; justify-content: center; margin-top: 1rem; }
+            .ribbon-mini { margin-left: auto; }
+            .date-cell, .sport-cell, .navy-cell, .red-cell { text-align: right; }
         }
       `}</style>
     </div>
